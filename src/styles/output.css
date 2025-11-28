@@ -316,6 +316,9 @@
   .max-w-md {
     max-width: var(--container-md);
   }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
   .border-collapse {
     border-collapse: collapse;
   }

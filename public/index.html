@@ -306,7 +306,7 @@
       box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       cursor: pointer;
       transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -364,6 +364,37 @@
       50% { background-position: 100% 50%; }
     }
 
+    /* Container untuk konten kartu yang bisa di-scroll */
+    .card-content {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding-right: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Scrollbar styling */
+    .card-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .card-content::-webkit-scrollbar-track {
+      background: rgba(122, 14, 14, 0.1);
+      border-radius: 10px;
+    }
+
+    .card-content::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 10px;
+    }
+
+    .card-content::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-color);
+    }
+
     /* Tombol tutup untuk kartu terakhir */
     .close-btn {
       margin-top: 20px;
@@ -381,6 +412,7 @@
       overflow: hidden;
       z-index: 50;
       pointer-events: auto;
+      flex-shrink: 0;
     }
     
     .close-btn::before {
@@ -702,46 +734,56 @@
           <div class="card-container">
             <!-- Kartu 1 -->
             <div class="card active" data-card="1">
-              <h2 class="card-title sparkle-text">Selamat Ulang Tahun!</h2>
-              <p class="card-text">
-                selamat ulang tahun mas deo, OMG !! omaguuuu umurnya uda 20 tahun nii sekarang selamat yaa
-              </p>
-              <p class="card-subtext">
-                ✨ Klik ✨
-              </p>
+              <div class="card-content">
+                <h2 class="card-title sparkle-text">Selamat Ulang Tahun!</h2>
+                <p class="card-text">
+                  selamat ulang tahun mas deo, OMG !! omaguuuu umurnya uda 20 tahun nii sekarang selamat yaa
+                </p>
+                <p class="card-subtext">
+                  ✨ Klik ✨
+                </p>
+              </div>
             </div>
 
             <!-- Kartu 2 -->
             <div class="card next" data-card="2">
-              <h2 class="card-title sparkle-text">Doa Terbaik</h2>
-              <p class="card-text">
-                ohiya mas diumur yang sekarang semoga mas bisa jadi pribadi yang lebih baik dari sebelumnya dan selalu dilancarkan segala urusannya dipermudah juga usahanya dijauhkan dari hal hal yang tidak di inginkan
-              </p>
-              <p class="card-subtext">
-                ✨ Klik ✨
-              </p>
+              <div class="card-content">
+                <h2 class="card-title sparkle-text">Doa Terbaik</h2>
+                <p class="card-text">
+                  ohiya mas diumur yang sekarang semoga mas bisa jadi pribadi 
+                  yang lebih baik dari sebelumnya dan selalu dilancarkan segala urusannya
+                   dipermudah juga usahanya dijauhkan dari hal hal yang tidak di inginkan,  mas sehat sehat disana jaga kesehatan dijaga pola makannya dan juga meskipun kerjanya jauh dan cape tetep luangin waktu untuk istirahat dan luangin waktu buat diri kamu makan ya, dan harus selalu minum air putih supaya gaada keluhan sakit pingan haha, aku selalu do' a in mas deo yang terbaik aku bangga banget sama mas deo segitu uda punya banyak wawasan yang luas dan punya pengalaman apa lagi pas mas deo bilang menang di debat b inggris ih aku ikut seneng gitu dengernya mas, makasih ya mas karna selalu luangin waktu meskipun sibuk 💗💗💗
+                </p>
+                <p class="card-subtext">
+                  ✨ Klik ✨
+                </p>
+              </div>
             </div>
 
             <!-- Kartu 3 -->
             <div class="card next" data-card="3">
-              <h2 class="card-title sparkle-text">Makasih Banyak</h2>
-              <p class="card-text">
-                ohiya mas makasih banyak ya karna selama ini dan selama komunikasi mas deo selalu ada buat aku dan selalu bikin aku seneng ntah dari hal terkecil sampai ke terbesar aku bener’ seneng banget bisa ada komunikasi sama mas deo<3
-              </p>
-              <p class="card-subtext">
-                ✨ Klik ✨
-              </p>
+              <div class="card-content">
+                <h2 class="card-title sparkle-text">Makasih Banyak</h2>
+                <p class="card-text">
+                  ohiya mas makasih banyak ya karna selama ini dan selama komunikasi mas deo selalu ada buat aku dan selalu bikin aku seneng ntah dari hal terkecil sampai ke terbesar aku bener' seneng banget bisa ada komunikasi sama mas deo<3
+                </p>
+                <p class="card-subtext">
+                  ✨ Klik ✨
+                </p>
+              </div>
             </div>
 
             <!-- Kartu 4 - Dengan tombol tutup -->
             <div class="card next" data-card="4">
-              <h2 class="card-title sparkle-text"></h2>
-              <p class="card-text">
-                ow… cit aku malu banget haha, semoga dengan surat sederhana ini, mas deo ngerasa seneng yapp
-              </p>
-              <button class="close-btn" id="closeCard">
-                <i class="fas fa-times"></i> Tutup Kartu
-              </button>
+              <div class="card-content">
+                <h2 class="card-title sparkle-text"></h2>
+                <p class="card-text">
+                  ow… cit aku malu banget haha, semoga dengan surat sederhana ini, mas deo ngerasa seneng yapp, selamat berbahagia ya mas deo!<3
+                </p>
+                <button class="close-btn" id="closeCard">
+                  <i class="fas fa-times"></i> Tutup Kartu
+                </button>
+              </div>
             </div>
           </div>
 
