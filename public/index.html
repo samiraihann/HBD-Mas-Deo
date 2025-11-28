@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birth Day</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- VARIABEL CSS --- */
+    :root {
+      --primary-color: #7a0e0e;
+      --secondary-color: #5b0a0a;
+      --accent-color: #ff6b6b;
+      --text-color: #fff;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+      --bg-color: #fef2f2;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef2f2 0%, #ffecec 50%, #fef2f2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background pattern */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(122, 14, 14, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+      background-size: 50% 50%, 60% 60%, 70% 70%;
+      animation: patternMove 20s ease-in-out infinite;
+      z-index: -2;
+    }
+
+    @keyframes patternMove {
+      0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+      50% { background-position: 100% 100%, 0% 0%, 80% 80%; }
+    }
+    
+    /* --- ANIMASI LOVE FLOATING --- */
+    @keyframes floatUp {
+      0% { 
+        transform: translateY(0) rotate(0deg) scale(0.7); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translateY(-120px) rotate(360deg) scale(1.4); 
+        opacity: 0; 
+      }
+    }
+    
+    @keyframes floatUpSlow {
+      0% { 
+        transform: translateY(0) rotate(0deg) scale(0.8); 
+        opacity: 0.8; 
+      }
+      100% { 
+        transform: translateY(-180px) rotate(180deg) scale(1.3); 
+        opacity: 0; 
+      }
+    }
+    
+    @keyframes floatUpMedium {
+      0% { 
+        transform: translateY(0) rotate(0deg) scale(0.9); 
+        opacity: 0.9; 
+      }
+      100% { 
+        transform: translateY(-150px) rotate(270deg) scale(1.2); 
+        opacity: 0; 
+      }
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 0;
+      font-size: 20px;
+      pointer-events: none;
+      z-index: 100;
+      filter: drop-shadow(0 2px 4px rgba(122, 14, 14, 0.3));
+    }
+    
+    .heart.fast {
+      animation: floatUp 2s ease-out forwards;
+    }
+    
+    .heart.medium {
+      animation: floatUpMedium 3s ease-out forwards;
+    }
+    
+    .heart.slow {
+      animation: floatUpSlow 4s ease-out forwards;
+    }
+
+    /* Floating elements background */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      opacity: 0.1;
+      animation: floatElement 15s ease-in-out infinite;
+    }
+
+    .floating-element.heart-bg {
+      font-size: 30px;
+      color: var(--primary-color);
+    }
+
+    .floating-element.star {
+      font-size: 20px;
+      color: var(--accent-color);
+    }
+
+    .floating-element.circle {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--secondary-color);
+    }
+
+    @keyframes floatElement {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.1;
+      }
+      33% {
+        transform: translateY(-30px) rotate(120deg) scale(1.1);
+        opacity: 0.15;
+      }
+      66% {
+        transform: translateY(20px) rotate(240deg) scale(0.9);
+        opacity: 0.08;
+      }
+    }
+
+    /* --- CONTAINER UTAMA --- */
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      padding: 20px;
+    }
+
+    /* --- AMBLOF STYLING --- */
+    .envelope-wrapper {
+      position: relative;
+      width: min(500px, 90vw);
+      height: min(340px, 60vh);
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .envelope {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+      perspective: 1000px;
+      filter: drop-shadow(0 15px 35px rgba(122, 14, 14, 0.4));
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: envelopeGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes envelopeGlow {
+      0%, 100% {
+        filter: drop-shadow(0 15px 35px rgba(122, 14, 14, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 20px 45px rgba(122, 14, 14, 0.6));
+      }
+    }
+    
+    .envelope:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    /* Shake effect ketika pertama kali ditekan */
+    .envelope:active {
+      animation: shake 0.50s ease;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0) rotate(0deg); }
+      25% { transform: translateX(-5px) rotate(-1deg); }
+      50% { transform: translateX(5px) rotate(1deg); }
+      75% { transform: translateX(-3px) rotate(-0.5deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    /* === FLAP AMBLOF === */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 30;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* === BODY AMBLOF === */
+    .body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      overflow: hidden;
+      z-index: 20;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* === CARD CONTAINER === */
+    .card-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 85%;
+      height: 75%;
+      z-index: 5;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, -50%) translateY(40%);
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+    }
+
+    /* === CARD UCAPAN === */
+    .card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .card.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+      transform: translateX(0);
+      animation: cardGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes cardGlow {
+      0%, 100% {
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      }
+      50% {
+        box-shadow: 0 20px 45px rgba(122, 14, 14, 0.2);
+      }
+    }
+    
+    .card.next {
+      transform: translateX(100%);
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .card.prev {
+      transform: translateX(-100%);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Efek dekoratif pada card */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+      border-radius: 12px 12px 0 0;
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Tombol tutup untuk kartu terakhir */
+    .close-btn {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 6px 20px rgba(122, 14, 14, 0.4);
+      position: relative;
+      overflow: hidden;
+      z-index: 50;
+      pointer-events: auto;
+    }
+    
+    .close-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .close-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(122, 14, 14, 0.5);
+    }
+    
+    .close-btn:hover::before {
+      left: 100%;
+    }
+    
+    .close-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Indikator kartu */
+    .card-indicator {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 15;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease 0.5s;
+    }
+    
+    .indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      opacity: 0.3;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+    }
+    
+    .indicator-dot.active {
+      opacity: 1;
+      transform: scale(1.4);
+      background: var(--accent-color);
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+    }
+
+    .indicator-dot:hover {
+      transform: scale(1.2);
+    }
+
+    /* Saat amplop terbuka */
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+      z-index: 5;
+    }
+
+    .envelope.open .card-container {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) translateY(-20%);
+      z-index: 25;
+      animation: cardBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .envelope.open .card-indicator {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Bounce muncul */
+    @keyframes cardBounce {
+      0% { 
+        transform: translate(-50%, -50%) translateY(-30%) scale(0.9);
+        opacity: 0;
+      }
+      60% { 
+        transform: translate(-50%, -50%) translateY(-18%) scale(1.05);
+        opacity: 1;
+      }
+      100% { 
+        transform: translate(-50%, -50%) translateY(-20%) scale(1);
+        opacity: 1;
+      }
+    }
+    
+    /* Efek konfeti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 15px;
+      background: var(--primary-color);
+      top: 0;
+      opacity: 0;
+      z-index: 100;
+      border-radius: 2px;
+      animation: confettiFall 3s ease-in-out forwards;
+    }
+    
+    .confetti:nth-child(2n) {
+      background: var(--accent-color);
+      height: 12px;
+      animation-duration: 4s;
+    }
+    
+    .confetti:nth-child(3n) {
+      background: #d63384;
+      height: 10px;
+      animation-duration: 3.5s;
+    }
+    
+    .confetti:nth-child(4n) {
+      background: #ffd700;
+      height: 14px;
+      animation-duration: 4.5s;
+    }
+    
+    @keyframes confettiFall {
+      0% { 
+        transform: translateY(-100px) rotate(0deg) scale(1); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translateY(100vh) rotate(720deg) scale(1.2); 
+        opacity: 0; 
+      }
+    }
+    
+    /* Efek teks berkilau */
+    .sparkle-text {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(45deg, #7a0e0e, #d63384, #ff6b6b, #7a0e0e);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: sparkle 4s ease-in-out infinite;
+      text-shadow: 0 2px 10px rgba(122, 14, 14, 0.2);
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { 
+        background-position: 0% 50%;
+        transform: scale(1);
+      }
+      50% { 
+        background-position: 100% 50%;
+        transform: scale(1.05);
+      }
+    }
+    
+    /* Pesan instruksi */
+    .instruction {
+      position: fixed;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: var(--primary-color);
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      font-weight: 600;
+      opacity: 0.9;
+      animation: pulse 2s ease-in-out infinite;
+      z-index: 20;
+      padding: 0 15px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { 
+        opacity: 0.7;
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+    
+    /* Judul halaman */
+    .page-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.2rem, 7vw, 3rem);
+      color: var(--primary-color);
+      margin-bottom: 25px;
+      text-align: center;
+      animation: titleFloat 4s ease-in-out infinite;
+      padding: 0 15px;
+      text-shadow: 0 4px 15px rgba(122, 14, 14, 0.3);
+    }
+    
+    @keyframes titleFloat {
+      0%, 100% { 
+        transform: translateY(0px) scale(1);
+      }
+      50% { 
+        transform: translateY(-10px) scale(1.03);
+      }
+    }
+    
+    /* Container untuk konten tengah */
+    .content-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Styling untuk teks di dalam card */
+    .card-title {
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      font-weight: bold;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+    
+    .card-text {
+      font-size: clamp(0.85rem, 3vw, 1rem);
+      color: #4a5568;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    
+    .card-subtext {
+      font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+      color: #718096;
+      line-height: 1.4;
+      margin-top: 12px;
+    }
+
+    /* Mobile specific adjustments */
+    @media (max-width: 768px) {
+      .envelope-wrapper {
+        width: 85vw;
+        height: 55vw;
+        max-height: 280px;
+      }
+      
+      .card {
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+      .card::before {
+        height: 4px;
+      }
+      
+      .close-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+      }
+      
+      .instruction {
+        bottom: 20px;
+      }
+      
+      .heart {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-container {
+        padding: 15px;
+      }
+      
+      .envelope-wrapper {
+        width: 90vw;
+        height: 60vw;
+        max-height: 250px;
+      }
+      
+      .card {
+        padding: 15px;
+      }
+      
+      .page-title {
+        margin-bottom: 20px;
+      }
+      
+      .close-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-pattern"></div>
+  <div class="floating-elements" id="floatingElements"></div>
+  
+  <div class="main-container">
+    <div class="content-center">
+      <h1 class="page-title">Happy 20th, Mas Deo! 🎉</h1>
+      
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" id="confetti-container"></div>
+      
+      <div class="envelope-wrapper">
+        <div id="envelope" class="envelope">
+          <div class="flap"></div>
+          <div class="body"></div>
+
+          <!-- Card Container - Awalnya tersembunyi -->
+          <div class="card-container">
+            <!-- Kartu 1 -->
+            <div class="card active" data-card="1">
+              <h2 class="card-title sparkle-text">Selamat Ulang Tahun!</h2>
+              <p class="card-text">
+                selamat ulang tahun mas deo, OMG !! omaguuuu umurnya uda 20 tahun nii sekarang selamat yaa
+              </p>
+              <p class="card-subtext">
+                ✨ Klik ✨
+              </p>
+            </div>
+
+            <!-- Kartu 2 -->
+            <div class="card next" data-card="2">
+              <h2 class="card-title sparkle-text">Doa Terbaik</h2>
+              <p class="card-text">
+                ohiya mas diumur yang sekarang semoga mas bisa jadi pribadi yang lebih baik dari sebelumnya dan selalu dilancarkan segala urusannya dipermudah juga usahanya dijauhkan dari hal hal yang tidak di inginkan
+              </p>
+              <p class="card-subtext">
+                ✨ Klik ✨
+              </p>
+            </div>
+
+            <!-- Kartu 3 -->
+            <div class="card next" data-card="3">
+              <h2 class="card-title sparkle-text">Makasih Banyak</h2>
+              <p class="card-text">
+                ohiya mas makasih banyak ya karna selama ini dan selama komunikasi mas deo selalu ada buat aku dan selalu bikin aku seneng ntah dari hal terkecil sampai ke terbesar aku bener’ seneng banget bisa ada komunikasi sama mas deo<3
+              </p>
+              <p class="card-subtext">
+                ✨ Klik ✨
+              </p>
+            </div>
+
+            <!-- Kartu 4 - Dengan tombol tutup -->
+            <div class="card next" data-card="4">
+              <h2 class="card-title sparkle-text"></h2>
+              <p class="card-text">
+                ow… cit aku malu banget haha, semoga dengan surat sederhana ini, mas deo ngerasa seneng yapp
+              </p>
+              <button class="close-btn" id="closeCard">
+                <i class="fas fa-times"></i> Tutup Kartu
+              </button>
+            </div>
+          </div>
+
+          <div class="card-indicator">
+            <div class="indicator-dot active" data-index="0"></div>
+            <div class="indicator-dot" data-index="1"></div>
+            <div class="indicator-dot" data-index="2"></div>
+            <div class="indicator-dot" data-index="3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="instruction">
+    <p>Klik kartu!</p>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const confettiContainer = document.getElementById("confetti-container");
+    const floatingElements = document.getElementById("floatingElements");
+    const cards = document.querySelectorAll('.card');
+    const indicators = document.querySelectorAll('.indicator-dot');
+    const closeBtn = document.getElementById('closeCard');
+    let currentCardIndex = 0;
+    let isOpen = false;
+
+    // Create floating background elements
+    function createFloatingElements() {
+      const elementCount = 15;
+      const types = ['heart-bg', 'star', 'circle'];
+      
+      for (let i = 0; i < elementCount; i++) {
+        const element = document.createElement('div');
+        const type = types[Math.floor(Math.random() * types.length)];
+        element.classList.add('floating-element', type);
+        
+        // Random position
+        element.style.left = Math.random() * 100 + '%';
+        element.style.top = Math.random() * 100 + '%';
+        
+        // Random animation delay
+        element.style.animationDelay = Math.random() * 15 + 's';
+        
+        // Set content based on type
+        if (type === 'heart-bg') {
+          element.innerHTML = '💖';
+        } else if (type === 'star') {
+          element.innerHTML = '⭐';
+        }
+        
+        floatingElements.appendChild(element);
+      }
+    }
+
+    // Efek konfeti
+    function createConfetti() {
+      const confettiCount = window.innerWidth < 768 ? 30 : 50;
+      
+      confettiContainer.innerHTML = '';
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDelay = Math.random() * 2 + "s";
+        confettiContainer.appendChild(confetti);
+        
+        setTimeout(() => {
+          if (confetti.parentNode === confettiContainer) {
+            confetti.remove();
+          }
+        }, 5000);
+      }
+    }
+    
+    // Efek hati berjatuhan
+    function createHearts() {
+      const heartCount = window.innerWidth < 768 ? 8 : 12;
+      
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        
+        const speedTypes = ['fast', 'medium', 'slow'];
+        const speedType = speedTypes[Math.floor(Math.random() * speedTypes.length)];
+        heart.classList.add(speedType);
+        
+        heart.style.left = (20 + Math.random() * 60) + "%";
+        heart.innerHTML = "❤️";
+        envelope.appendChild(heart);
+
+        setTimeout(() => {
+          if (heart.parentNode === envelope) {
+            heart.remove();
+          }
+        }, 4000);
+      }
+    }
+
+    // Fungsi untuk menutup amplop
+    function closeEnvelope() {
+      isOpen = false;
+      envelope.classList.remove("open");
+      document.querySelector('.instruction p').textContent = "Klik amplop untuk membuka kejutan!";
+      resetCards();
+      createConfetti();
+      createHearts();
+    }
+
+    // Fungsi untuk berpindah kartu
+    function nextCard() {
+      if (!isOpen) return;
+      
+      // Sembunyikan kartu saat ini
+      cards[currentCardIndex].classList.remove('active');
+      cards[currentCardIndex].classList.add('prev');
+      
+      // Update index
+      currentCardIndex = (currentCardIndex + 1) % cards.length;
+      
+      // Tampilkan kartu berikutnya
+      cards[currentCardIndex].classList.remove('next', 'prev');
+      cards[currentCardIndex].classList.add('active');
+      
+      // Reset posisi kartu lainnya
+      cards.forEach((card, index) => {
+        if (index !== currentCardIndex) {
+          card.classList.remove('active', 'prev');
+          card.classList.add('next');
+        }
+      });
+      
+      updateIndicator();
+      
+      // Efek khusus untuk kartu terakhir
+      if (currentCardIndex === cards.length - 1) {
+        createConfetti();
+        createHearts();
+      }
+    }
+
+    // Update indicator dots
+    function updateIndicator() {
+      indicators.forEach((dot, index) => {
+        if (index === currentCardIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Event listener untuk amplop
+    envelope.addEventListener("click", (e) => {
+      // Cegah jika yang diklik adalah child elements yang tidak seharusnya trigger buka/tutup
+      if (e.target.closest('.card') || 
+          e.target.classList.contains('card-indicator') || 
+          e.target.classList.contains('indicator-dot') || 
+          e.target.closest('.close-btn')) {
+        return;
+      }
+      
+      isOpen = !isOpen;
+      envelope.classList.toggle("open");
+
+      if (isOpen) {
+        createHearts();
+        createConfetti();
+        document.querySelector('.instruction p').textContent = "Klik kartu untuk lanjut!";
+      } else {
+        closeEnvelope();
+      }
+    });
+
+    // Event listener untuk kartu (hanya kartu 1-3 yang bisa diklik untuk next)
+    cards.forEach((card, index) => {
+      card.addEventListener('click', (e) => {
+        // Jika bukan kartu aktif atau kartu terakhir, jangan proses
+        if (!card.classList.contains('active') || index === cards.length - 1) {
+          return;
+        }
+        
+        e.stopPropagation();
+        if (isOpen) {
+          nextCard();
+        }
+      });
+    });
+
+    // Event listener untuk indicator dots
+    indicators.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isOpen && index !== currentCardIndex) {
+          // Skip to specific card
+          cards[currentCardIndex].classList.remove('active');
+          cards[currentCardIndex].classList.add('prev');
+          
+          currentCardIndex = index;
+          
+          cards[currentCardIndex].classList.remove('next', 'prev');
+          cards[currentCardIndex].classList.add('active');
+          
+          cards.forEach((card, cardIndex) => {
+            if (cardIndex !== currentCardIndex) {
+              card.classList.remove('active', 'prev');
+              card.classList.add('next');
+            }
+          });
+          
+          updateIndicator();
+          
+          if (currentCardIndex === cards.length - 1) {
+            createConfetti();
+            createHearts();
+          }
+        }
+      });
+    });
+
+    // Event listener untuk tombol tutup di kartu terakhir
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      closeEnvelope();
+    });
+
+    // Reset semua kartu ke posisi awal
+    function resetCards() {
+      currentCardIndex = 0;
+      cards.forEach((card, index) => {
+        card.classList.remove('active', 'prev', 'next');
+        if (index === 0) {
+          card.classList.add('active');
+        } else {
+          card.classList.add('next');
+        }
+      });
+      updateIndicator();
+    }
+
+    // Prevent zoom on double tap (mobile)
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    // Inisialisasi
+    createFloatingElements();
+    resetCards();
+
+    // Debug info
+    console.log('Website Amplop Ulang Tahun loaded successfully!');
+    console.log('Total cards:', cards.length);
+    console.log('Close button found:', closeBtn !== null);
+  </script>
+</body>
+</html>
